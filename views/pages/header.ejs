@@ -26,3 +26,12 @@
                 <p><%= flash.error %></p>
             </div>
         <% }%>
+        <% if (locals.flash && locals.flash.success) {%>
+            <div class="ui positive message transition">
+                <i class="close icon"></i>
+                <div class="header">
+                    Libre d'or !
+                </div>
+                <p><%= flash.success %></p>
+            </div>
+        <% }%>

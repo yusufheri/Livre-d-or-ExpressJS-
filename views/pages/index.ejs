@@ -1,6 +1,21 @@
 <% include header %>
-
-<form action="/" method="post" class="ui form">
+<div class="ui attached message">
+        <div class="header">
+          Bienvenue au Livre d'Or
+        </div>
+        <p>Fill out the form below to sign-up for a new account</p>
+    </div>
+    <form class="ui form attached fluid segment" action="/" method="POST">
+    <div class="two fields">
+        <div class="field">
+        <label>Username</label>
+        <input placeholder="Username" type="text" id="username" name="username">
+        </div>
+        <div class="field">
+        <label>Email</label>
+        <input placeholder="Email" type="email" id="email" name="email">
+        </div>
+    </div>
     <div class="field">
         <label for="message">Message</label>
         <textarea name="message" id="message" ></textarea>
@@ -8,7 +23,28 @@
     <button type="submit" class="ui blue labeled submit icon button">
         <i class="icon edit"></i> Envoyer
     </button>
-</form>
+    </form>
+    <div class="ui comments">
+    <h3 class="ui dividing header"> Commentaires </h3>
+    <% for (message of messages) {%>
+        <div class="comment">
+            <a class="avatar">
+                <img src="https://randomuser.me/api/portraits/lego/7.jpg" style="width: 35px;height: 35px;">
+            </a>
+            <div class="content">
+                <a class="author"><%= message.username %></a>
+                <div class="metadata">
+                    <div class="date"><%= message.created_at %></div>
+                </div>
+                <div class="text">
+                    <%= message.message %>
+                </div>
+                <div class="actions">
+                    <a class="delete">Supprimer</a>
+                    <a class="update">Modifier</a>
+                </div>
+            </div>
+        </div>
+    <% }%>
+    </div>
 <% include footer %>
-
-   

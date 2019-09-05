@@ -22,15 +22,26 @@ app.use(require('./middlewares/flash'));
 
 // Routes
 app.get('/', (request, response) => {
-    console.log(request.session)    
-    response.render('pages/index');
+    let Message = require('./models/message');
+    Message.all(function(messages) {
+        response.render('pages/index', {messages: messages});
+    })
+    
 })
 
 app.post('/', (request, response) => {
     if (request.body.message === undefined ||request.body.message === '') {
-        request.flash('error', 'Prière de complèter le champ vide');
-        response.redirect('/')
+        request.flash('error', 'Prière de complèter le champ vide');      
+        response.redirect('/');  
+    } else {
+        let Message = require('./models/message');
+
+        Message.create(request.body, function() {
+            request.flash('success', 'Bien enregistré avec succès');
+            response.redirect('/');
+        })
     }
+    
 })
 
-app.listen(80)
+app.listen(8080)
