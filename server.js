@@ -44,4 +44,12 @@ app.post('/', (request, response) => {
     
 })
 
+app.get('/message/:id', (request, response) => {
+    //  response.send(request.params.id)    
+    let Message = require('./models/message');
+    Message.find(request.params.id, function(message) {
+        response.render('messages/show', {message: message});
+    })
+})
+
 app.listen(8080)

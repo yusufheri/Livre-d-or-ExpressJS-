@@ -10,7 +10,7 @@ class Message {
     }
 
     get _id() {
-        return this.row.id;
+        return this.row.num;
     }
     get _username() {
         return this.row.username
@@ -40,9 +40,9 @@ class Message {
     }
 
     static find(id, callback) {
-        connection.query('SELECT * FROM messages where id=?',[id], (err, row) => {
+        connection.query('SELECT * FROM messages where num=? LIMIT 1',[id], (err, rows) => {
             if(err) throw err;
-            callback(new Message(row));
+            callback(new Message(rows[0]));
         })
     }
 }

@@ -1,0 +1,22 @@
+<% include ../pages/header %>
+    <div class="ui comments">
+        <div class="comment">
+            <a class="avatar" href="/message/<%= message._id %>">
+                <img src="https://randomuser.me/api/portraits/women/88.jpg" style="width: 100px;height: 100px;">
+            </a>
+            <div class="content" style="margin-left: 150px;">
+                <a class="author"><%= message._username %></a>
+                <div class="metadata">
+                    <div class="date"><%= message._created_at.fromNow() %></div>
+                </div>
+                <div class="text">
+                    <%= message._message %>
+                </div>
+                <div class="actions">
+                    <a class="delete">Supprimer</a>
+                    <a class="update">Modifier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% include ../pages/footer %>
