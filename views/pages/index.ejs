@@ -6,23 +6,23 @@
         <p>Fill out the form below to sign-up for a new account</p>
     </div>
     <form class="ui form attached fluid segment" action="/" method="POST">
-    <div class="two fields">
-        <div class="field">
-        <label>Username</label>
-        <input placeholder="Username" type="text" id="username" name="username">
+        <div class="two fields">
+            <div class="field">
+            <label>Username</label>
+            <input placeholder="Username" type="text" id="username" name="username">
+            </div>
+            <div class="field">
+            <label>Email</label>
+            <input placeholder="Email" type="email" id="email" name="email">
+            </div>
         </div>
         <div class="field">
-        <label>Email</label>
-        <input placeholder="Email" type="email" id="email" name="email">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" ></textarea>
         </div>
-    </div>
-    <div class="field">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" ></textarea>
-    </div>
-    <button type="submit" class="ui blue labeled submit icon button">
-        <i class="icon edit"></i> Envoyer
-    </button>
+        <button type="submit" class="ui blue labeled submit icon button">
+            <i class="icon edit"></i> Envoyer
+        </button>
     </form>
     <div class="ui comments">
     <h3 class="ui dividing header"> Commentaires </h3>
@@ -40,8 +40,8 @@
                     <%= message._message %>
                 </div>
                 <div class="actions">
-                    <a class="delete">Supprimer</a>
-                    <a class="update">Modifier</a>
+                    <button class="delete mini ui basic  button"  data-id="<%= message._id %>">
+                        <i class="icon trash alternate delete_icon"></i> Supprimer</button>
                 </div>
             </div>
         </div>

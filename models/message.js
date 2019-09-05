@@ -56,6 +56,13 @@ class Message {
             callback(new Message(rows[0]));
         })
     }
+
+    static delete(id, callback) {
+        connection.query('DELETE  FROM messages WHERE num=?', [id], (err, result) => {
+            if (err) throw err;
+            callback(result);
+        })
+    }
 }
 
 module.exports = Message;

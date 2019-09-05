@@ -1,6 +1,54 @@
 </div>
 <script src="/assets/jquery.min.js"></script>
 <script src="/assets/semantic/semantic.min.js"></script>
+<script>    
+   $('.delete').on('click', (e)=> {
+        e.preventDefault();
+
+        let target = e.target;
+        let id = target.getAttribute('data-id');
+        let url = 'http://localhost:8080/message/' + (id) + '';
+
+        if (confirm('Are you sure to delete this comment ?')) {
+            $.ajax({
+                url:url,
+                method: 'DELETE',
+                beforeSend: function(){
+                    target.classList.add('loading');
+                }, success: function(){
+                    let div = target.parentNode.parentNode.parentNode
+                    div.remove();
+                }, error: function (err) {
+                    console.log(err)
+                }, complete: function() {
+                    target.classList.remove('loading');
+                }
+            })
+        }
+       
+
+        /* let target = e.target;
+        let id = target.getAttribute('data-id');
+        console.log(id)
+        let url = 'http://localhost:8080/message/' + (id) + '';
+        let xmlHttp = new XMLHttpRequest();
+
+        if (confirm('Are you sure to delete this comment ?')) {
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState === XMLHttpRequest.DONE) {
+                    if (xmlHttp.status === 200) {
+                        console.log('Suppression avec succès');                        
+                    } else {
+                        console.error("Status de la réponse: %d (%s)", this.status, this.statusText);
+                    }
+                    window.location.href="http://localhost:8080/";
+                }                               
+            }
+            xmlHttp.open('DELETE', url,true);
+            xmlHttp.send(null)
+        } */
+    })
+</script>
 <script>
     $('.message .close')
         .on('click', function() {

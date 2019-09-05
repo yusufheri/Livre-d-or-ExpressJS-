@@ -21,6 +21,9 @@ app.use(session({
 app.use(require('./middlewares/flash'));
 
 // Routes
+/**
+ * return all comments from Database MySQL
+ */
 app.get('/', (request, response) => {
     let Message = require('./models/message');
     Message.all(function(messages) {
@@ -28,6 +31,7 @@ app.get('/', (request, response) => {
     })
     
 })
+
 
 app.post('/', (request, response) => {
     if (request.body.message === undefined ||request.body.message === '') {
@@ -45,11 +49,27 @@ app.post('/', (request, response) => {
 })
 
 app.get('/message/:id', (request, response) => {
-    //  response.send(request.params.id)    
     let Message = require('./models/message');
     Message.find(request.params.id, function(message) {
         response.render('messages/show', {message: message});
     })
 })
+
+app.put('/message/:id', (request, response) => {
+    let Message = require('./models/message');
+    Message.update(request.params.id, function() {
+        request.flash('success', 'Modification avec succès');  
+        response.redirect(`/message/${request.params.id}`)
+    })
+});
+
+app.delete('/message/:id', (request, response) => {
+    let Message = require('./models/message');
+    Message.delete(request.params.id, function() {
+        console.log('Suppression avec succès');
+        response.send('Suppression avec succès');
+    })
+    
+});
 
 app.listen(8080)
