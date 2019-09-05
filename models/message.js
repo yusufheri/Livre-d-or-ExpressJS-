@@ -12,6 +12,17 @@ class Message {
     get _id() {
         return this.row.num;
     }
+
+    get _filename() {
+
+        let array = ['men', 'women'];
+        let category = Math.floor(Math.random() * 2);
+        let name =  Math.floor(Math.random() * 90)
+
+       
+        return (array[category]) +'/'+ (name) +'.jpg';
+    }
+
     get _username() {
         return this.row.username
     }

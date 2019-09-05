@@ -29,7 +29,7 @@
     <% for (message of messages) {%>
         <div class="comment">
             <a class="avatar" href="/message/<%= message._id %>">
-                <img src="https://randomuser.me/api/portraits/lego/7.jpg" style="width: 35px;height: 35px;">
+                <img src="https://randomuser.me/api/portraits/<%= message._filename %>" style="width: 35px;height: 35px;">
             </a>
             <div class="content">
                 <a class="author"><%= message._username %></a>
