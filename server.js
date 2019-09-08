@@ -72,4 +72,37 @@ app.delete('/message/:id', (request, response) => {
     
 });
 
+app.post('/api/signup', (req, res) => {
+    if (req.body.user === undefined || req.body.user === '') {
+        request.flash('error', 'Prière de complèter les champs vides');  
+        response.redirect('/');  
+    } else {
+        let User = require('./models/user');
+        User.signup(req.body, function() {
+            request.flash('success', 'Bien enregistré avec succès');
+            response.redirect('/');
+        })
+    }
+})
+
+app.post('/api/signin', (req, res) => {
+    if (req.body.user === undefined || req.body.user === '') {
+        request.flash('error', 'Prière de complèter le champ vide');  
+        response.redirect('/');  
+    } else {
+        let User = require('./models/user');
+        User.signup(req.body, function() {
+            request.flash('success', 'Connecté avec succès');
+            response.redirect('/');
+        });
+    }
+})
+
+app.post('/api/logout', (req, res) => {
+    let User = require('./models/user');
+        User.logout(req.body, function() {
+            request.flash('success', 'Déconnecté avec succès');
+            response.redirect('/');
+        })
+})
 app.listen(8080)
